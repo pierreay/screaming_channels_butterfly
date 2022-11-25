@@ -1842,7 +1842,7 @@ void BLEController::initializeConnection() {
 	this->updateHopIncrement(this->connectionInitiationData.hopIncrement);
 	this->updateChannelsInUse(this->connectionInitiationData.channelMap);
 
-	//this->emptyTransmitIndicator = true;
+	this->emptyTransmitIndicator = true;
 
 	this->radio->disableFilter();
 	this->radio->disableAutoTXafterRX();
