@@ -2,13 +2,14 @@ PROJECT_NAME     := injectable
 TARGETS          := nrf52840_xxaa
 OUTPUT_DIRECTORY := build
 DIST_DIRECTORY 	 := dist
+SDK_ROOT		 := /opt/nRF5_SDK_17.1.0_ddde560
 
 ifeq ($(PLATFORM),)
     PLATFORM = BOARD_PCA10059
 endif
 
 ifeq ($(SERIAL_PORT),)
-	SERIAL_PORT := /dev/ttyACM0
+	SERIAL_PORT := /dev/ttyACM1
 endif
 
 
