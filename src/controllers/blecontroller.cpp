@@ -1724,13 +1724,14 @@ void BLEController::sendConnectedReport() {
 
 void BLEController::connect(uint8_t *address, bool random) {
 	uint8_t channelMap[5] = {
-		0xFF,
-		0xFF,
-		0xFF,
-		0xFF,
-		0x1F
+		0x00,
+		0x03,
+		0x00,
+		0x00,
+		0x00
 	};
-	this->connect(address, random, 0x23a3d487, 0x049095, 3,9,56,0,42,1,9,channelMap);
+    uint32_t hopInterval = 56;
+	this->connect(address, random, 0x23a3d487, 0x049095, 3, 9, hopInterval, 0, 42, 1, 9, channelMap);
 }
 
 bool BLEController::goToNextInitiationChannel() {
