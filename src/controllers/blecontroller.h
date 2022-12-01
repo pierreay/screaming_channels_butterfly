@@ -269,7 +269,8 @@ class BLEController : public Controller {
 		bool ownRandom;
 
 		bool mdSequence;
-		int mdCount;
+		int mdCount;     // How many packets with MD=1 the controller can send
+                         // in one single connection event.
 
 		AdvertisingData advertisingData;
 
