@@ -22,7 +22,7 @@ Usage: run.sh [-c] [-f] [-p SERIAL_PORT] [-s SDK_ROOT]
 
 Wrapper script around the original Makefile.
 
--c is to perform a clean of the build directory for fresh compilation (prevent errors) [default = False].
+-c is to perform a clean of the build directory before and after compilation (may prevent errors) [default = False].
 -f is to perform the flash after the compilation [default = False].
 -p SERIAL_PORT is the serial port of the nRF52 dongle (search with whadup) [default = /dev/ttyACM0].
 -s SDK_ROOT is the installation directory of the Nordic SDK [default = /opt/nrf5-sdk].
@@ -56,9 +56,13 @@ shift $((OPTIND-1))
 
 set -e
 
-if [[ $CLEAN_ENABLE -eq 1 ]]; then
+function clean() {
     echo "[+] Clean build directory"
-    rm -rf build
+    rm -rf build dist
+}
+
+if [[ $CLEAN_ENABLE -eq 1 ]]; then
+    clean
 fi
 
 echo "[+] Start compilation..."
@@ -73,4 +77,8 @@ if [[ $FLASH_ENABLE -eq 1 ]]; then
     make send "SERIAL_PORT=$SER_PORT" "SDK_ROOT=$SDK_ROOT"
 else
     echo "[!] Skip flash!"
+fi
+
+if [[ $CLEAN_ENABLE -eq 1 ]]; then
+    clean
 fi
