@@ -58,7 +58,9 @@ set -e
 
 function clean() {
     echo "[+] Clean build directory"
-    rm -rf build dist
+    # NOTE: Discard errors if build/ and dist/ are empty.
+    rm -rf build/*  2>/dev/null || :
+    rm -rf dist/*   2>/dev/null || :
 }
 
 if [[ $CLEAN_ENABLE -eq 1 ]]; then
