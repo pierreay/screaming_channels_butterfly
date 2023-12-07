@@ -1174,7 +1174,7 @@ void Core::init() {
 }
 
 bool Core::selectController(Protocol controller) {
-  this->getLedModule()->on(LED2);
+    this->getLedModule()->on(LED2);
 	if (controller == BLE_PROTOCOL) {
     this->getLedModule()->setColor(BLUE);
 		this->radio->disable();

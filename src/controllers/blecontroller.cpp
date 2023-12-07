@@ -2011,6 +2011,7 @@ void BLEController::initializeConnection() {
 		this->timeoutTimer->update(this->hopInterval * 1250UL);
 		this->timeoutTimer->start();
 	}
+    Core::instance->getLedModule()->on(LED1);
 }
 
 bool BLEController::sendFirstConnectionPacket() {
@@ -2188,6 +2189,7 @@ void BLEController::disconnect() {
 		BLEPacket::forgeTerminateInd(&terminate_ind, &terminate_ind_size,0x13);
 		this->setMasterPayload(terminate_ind,terminate_ind_size);
 		this->connectionLost();
+        Core::instance->getLedModule()->off(LED1);
 	}
 }
 void BLEController::masterPacketProcessing(BLEPacket *pkt) {
